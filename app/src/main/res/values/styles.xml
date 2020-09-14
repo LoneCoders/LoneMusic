@@ -2,9 +2,22 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorPrimaryDark">#072757</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="textstyle">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="collapsedToolbarStyle">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="expandedToolbarStyle">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">27sp</item>
     </style>
 
 </resources>

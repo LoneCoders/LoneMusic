@@ -16,8 +16,7 @@ class MainActivity : AppCompatActivity() {
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         binding.pager.adapter = ViewPagerAdapter(supportFragmentManager)
         binding.tabLayout.setupWithViewPager(binding.pager)
-        binding.toolbar.apply {
-            inflateMenu(R.menu.menu)
+        binding.toolbar.
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.about -> {
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     else -> false
                 }
-            }
+
         }
     }
 

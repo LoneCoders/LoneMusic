@@ -3,4 +3,7 @@
     <string name="hello_message">Hello LoneCoders!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_us">
+        Media Player is currently an open source project on github hosted by CodeLoners.
+    </string>
 </resources>
