@@ -1,15 +1,13 @@
 package com.lonecoders.musicplayer
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.google.android.material.tabs.TabLayout
+import com.lonecoders.musicplayer.activities.AboutActivity
+import com.lonecoders.musicplayer.adapters.ViewPagerAdapter
 import com.lonecoders.musicplayer.databinding.ActivityMainBinding
-import com.lonecoders.musicplayer.util.ViewPagerAdapter
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
