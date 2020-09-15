@@ -15,14 +15,13 @@ data class Album(
 ) {
 
     companion object {
-        suspend fun getAlbums(cursor: Cursor?, c: Context):MutableList<Album>{
+        suspend fun getAlbums(cursor: Cursor?, c: Context): MutableList<Album> {
             return withContext(Dispatchers.IO) {
                 val albumList = mutableListOf<Album>()
                 cursor?.use {
-                    val albumIdColumn = it.getColumnIndex(ALBUM_ID)
-                    val albumNameColumn = it.getColumnIndex(ALBUM)
-
                     if (it.moveToFirst()) {
+                        val albumIdColumn = it.getColumnIndex(ALBUM_ID)
+                        val albumNameColumn = it.getColumnIndex(ALBUM)
                         do {
                             val thisAlbumId = it.getLong(albumIdColumn)
                             val thisAlbumName = it.getString(albumNameColumn)
@@ -45,9 +44,9 @@ data class Album(
             }
 
 
-            }
-
-
         }
+
+
+    }
 }
 

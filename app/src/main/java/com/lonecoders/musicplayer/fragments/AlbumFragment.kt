@@ -30,14 +30,18 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val job = Job()
-        var albumList = mutableListOf<Album>()
+        var albumSet: Set<Album>
 
-        CoroutineScope(job+Dispatchers.Main).launch {
-            albumList = Album.getAlbums(MusicUtils.getCursorForAlbums(requireContext()), requireContext())
+        CoroutineScope(job + Dispatchers.Main).launch {
+            albumSet = MusicUtils.albumListToAlbumSet(
+                Album.getAlbums(
+                    MusicUtils.getCursorForAlbums(requireContext()), requireContext()
+                )
+            )
             view.findViewById<RecyclerView>(R.id.album_list).apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(activity)
-                adapter = AlbumAdapter(albumList)
+                adapter = AlbumAdapter(albumSet)
             }
         }
 

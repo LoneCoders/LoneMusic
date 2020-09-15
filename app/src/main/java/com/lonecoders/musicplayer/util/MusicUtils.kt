@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.provider.MediaStore.Audio.Media.*
+import com.lonecoders.musicplayer.models.Album
 
 class MusicUtils {
 
@@ -25,6 +26,10 @@ class MusicUtils {
                     ARTIST
                 )
             return contentResolver.query(musicUri, projection, null, null, null)
+        }
+
+        fun albumListToAlbumSet(list: MutableList<Album>):Set<Album>{
+            return list.toSet()
         }
     }
 }

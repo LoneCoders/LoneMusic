@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.models.Album
 
-class AlbumAdapter(private val albumList: MutableList<Album>) :
+class AlbumAdapter(private val albumSet: Set<Album>) :
     RecyclerView.Adapter<AlbumAdapter.AlbumListViewHolder>() {
     class AlbumListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -20,11 +20,11 @@ class AlbumAdapter(private val albumList: MutableList<Album>) :
     }
 
     override fun onBindViewHolder(holder: AlbumListViewHolder, position: Int) {
-        holder.itemView.findViewById<TextView>(R.id.album_name).text = albumList[position].albumName
+        holder.itemView.findViewById<TextView>(R.id.album_name).text = albumSet.elementAt(position).albumName
     }
 
     override fun getItemCount(): Int {
-        return albumList.size
+        return albumSet.size
     }
 
 }
