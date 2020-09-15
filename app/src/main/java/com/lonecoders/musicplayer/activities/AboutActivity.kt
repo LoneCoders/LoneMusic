@@ -2,13 +2,15 @@ package com.lonecoders.musicplayer.activities
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.databinding.ActivityAboutBinding
-import kotlinx.android.synthetic.main.activity_about.*
+
 
 class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,21 +18,40 @@ class AboutActivity : AppCompatActivity() {
         val binding =
             DataBindingUtil.setContentView<ActivityAboutBinding>(this, R.layout.activity_about)
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
-        binding.githublink.setOnClickListener {
-            Intent(Intent.ACTION_VIEW).apply {
 
+    }
+}
+
+class AboutPreference : PreferenceFragmentCompat(){
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+
+
+        setPreferencesFromResource(R.xml.about_preference,"my_key")
+        //Visit us
+        findPreference<Preference>("github")?.setOnPreferenceClickListener {
+            Intent(Intent.ACTION_VIEW).apply {
                 setData(Uri.parse("https://github.com/LoneCoders"))
                 startActivity(this)
             }
+            true
         }
-        for( view in listOf<TextView>(devMail,dhinaMail,samMail))
-            view.setOnClickListener {
-                when(it){
-                    devMail ->Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto", "gokulrajan01234@gmail.com", null)).apply { startActivity(this) }
-                    samMail ->Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto", "gokulrajan01234@gmail.com", null)).apply { startActivity(this) }
-                    dhinaMail->Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto", "dhinalogu@gmail.com", null)).apply { startActivity(this) }
-                }
-            }
+        //Send feedback
+        findPreference<Preference>("feedback")?.setOnPreferenceClickListener {
+            Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto", "gokulrajan01234@gmail.com", null))
+                .apply { startActivity(this) }
+            true
+        }
+        //version number
+        findPreference<Preference>("version")?.setOnPreferenceClickListener {
+            Toast.makeText(context,"v1.0.0",Toast.LENGTH_SHORT).show()
+            true
+        }
+        //check version
+        //Yet to implement
+        findPreference<Preference>("check_new_version")?.setOnPreferenceClickListener {
+            Toast.makeText(context,"Already at new verison",Toast.LENGTH_SHORT).show()
+            true
+        }
 
     }
 }

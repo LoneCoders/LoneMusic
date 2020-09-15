@@ -40,7 +40,8 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:navigationIcon="@drawable/abc_vector_test"/>
+                    app:collapseIcon="@drawable/abc_vector_test"
+                    app:navigationIcon="@drawable/abc_vector_test" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -49,84 +50,14 @@
             android:layout_height="match_parent"
 
 
+            android:clickable="false"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <LinearLayout
+            <fragment
+                android:id="@+id/about_pref"
+                android:name="com.lonecoders.musicplayer.activities.AboutPreference"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/about_us"
-                    android:layout_margin="5dp"
-                    style="@style/textstyle" />
-
-                <view
-                    class="android.view.View"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#787070" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Version 1.0"
-                    android:layout_margin="10dp"
-                    android:textStyle="bold" />
-
-                <view
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    class="android.view.View"
-                    android:background="#787070" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/githublink"
-                    android:layout_margin="10dp"
-                    android:textStyle="bold"
-                    android:text="Visit us: github.com/LoneCoders" />
-
-                <view
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    class="android.view.View"
-                    android:background="#787070" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Contact us:"
-                    android:textStyle="bold"
-                    android:layout_margin="10dp"
-                    android:layout_marginBottom="0dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/dhinaMail"
-                    android:text="        dhinalogu@gmail.com"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/devMail"
-                    android:text="        gokulrajan01234@gmail.com"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/samMail"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="        sampath@gmail.com"/>
-                <view
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    class="android.view.View"
-                    android:background="#787070" />
-
-            </LinearLayout>
+                android:layout_height="wrap_content" />
 
         </androidx.core.widget.NestedScrollView>
 

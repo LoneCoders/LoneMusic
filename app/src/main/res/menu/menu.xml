@@ -6,5 +6,5 @@
         android:title="Settings" />
     <item
         android:id="@+id/about"
-        android:title="About Us" />
+        android:title="About" />
 </menu>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:summary="Report"
+    app:key="my_key">
+    <Preference
+        app:key="version"
+        app:summary="1.0.0"
+        app:title="Version Number" />
+    <Preference
+        app:key="check_new_version"
+        app:title="Check for new version"/>
+    <Preference
+        app:key="github"
+        app:summary="github.com/LoneCoders"
+        app:title="Visit github page"/>
+    <Preference
+        app:key="feedback"
+        app:title="Send feedback"
+        android:summary="Report technical issues or suggest new features"/>
+
+</PreferenceScreen>

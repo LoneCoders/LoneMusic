@@ -6,8 +6,9 @@ import android.net.Uri
 import android.provider.MediaStore.Audio.Media.*
 
 class MusicUtils {
+
     companion object {
-        fun getCursorForSongs(context: Context): Cursor? {
+       fun getCursorForSongs(context: Context): Cursor? {
             val contentResolver = context.contentResolver
             val musicUri: Uri = EXTERNAL_CONTENT_URI
             val projection = arrayOf(_ID, TITLE, ALBUM, ALBUM_ID, ARTIST, ARTIST_ID)

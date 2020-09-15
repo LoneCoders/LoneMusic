@@ -11,6 +11,10 @@ import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.AlbumAdapter
 import com.lonecoders.musicplayer.models.Album
 import com.lonecoders.musicplayer.util.MusicUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class AlbumFragment : Fragment() {
 
@@ -25,10 +29,17 @@ class AlbumFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<RecyclerView>(R.id.album_list).apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(activity)
-            adapter = AlbumAdapter(Album.getAlbums(MusicUtils.getCursorForAlbums(context), context))
+        val job = Job()
+        var albumList = mutableListOf<Album>()
+
+        CoroutineScope(job+Dispatchers.Main).launch {
+            albumList = Album.getAlbums(MusicUtils.getCursorForAlbums(requireContext()), requireContext())
+            view.findViewById<RecyclerView>(R.id.album_list).apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(activity)
+                adapter = AlbumAdapter(albumList)
+            }
         }
+
     }
 }

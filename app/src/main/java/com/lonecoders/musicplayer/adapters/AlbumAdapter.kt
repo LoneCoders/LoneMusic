@@ -10,9 +10,8 @@ import com.lonecoders.musicplayer.models.Album
 
 class AlbumAdapter(private val albumList: MutableList<Album>) :
     RecyclerView.Adapter<AlbumAdapter.AlbumListViewHolder>() {
-    class AlbumListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class AlbumListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumListViewHolder {
         val albumLayout = LayoutInflater.from(parent.context)
@@ -27,4 +26,5 @@ class AlbumAdapter(private val albumList: MutableList<Album>) :
     override fun getItemCount(): Int {
         return albumList.size
     }
+
 }
