@@ -6,4 +6,5 @@
     <string name="about_us">
         Media Player is currently an open source project on github hosted by CodeLoners.
     </string>
+    <string name="album_cover_description">Album Cover</string>
 </resources>

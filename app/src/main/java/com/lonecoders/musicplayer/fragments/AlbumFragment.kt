@@ -41,7 +41,7 @@ class AlbumFragment : Fragment() {
             view.findViewById<RecyclerView>(R.id.album_list).apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(activity)
-                adapter = AlbumAdapter(albumSet)
+                adapter = AlbumAdapter(childFragmentManager,albumSet)
             }
         }
 

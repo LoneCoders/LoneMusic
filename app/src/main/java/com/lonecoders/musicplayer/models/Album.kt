@@ -42,11 +42,7 @@ data class Album(
                 }
                 albumList
             }
-
-
         }
-
-
     }
 }
 
