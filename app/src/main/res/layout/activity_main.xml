@@ -8,17 +8,65 @@
         tools:context=".activities.MainActivity">
 
 
-
-
-        <fragment
-            android:id="@+id/main_frag"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:titleTextAppearance="@style/collapsedToolbarStyle"
+            app:title="@string/app_name"
+            app:menu="@menu/menu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF3F51B5"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:foregroundGravity="bottom"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:navGraph="@navigation/nav"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabIndicatorGravity="top">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_artists"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Artists" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_songs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Songs" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Albums" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_playlists"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paylists" />
+        </com.google.android.material.tabs.TabLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

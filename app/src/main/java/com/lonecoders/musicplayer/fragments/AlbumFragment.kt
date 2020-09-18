@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lonecoders.musicplayer.R
@@ -23,6 +21,7 @@ import kotlinx.coroutines.launch
 
 class AlbumFragment : Fragment() {
 
+    lateinit var views : View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,8 +46,9 @@ class AlbumFragment : Fragment() {
                 layoutManager = LinearLayoutManager(activity)
                 adapter = AlbumAdapter(childFragmentManager,albumSet, onClickListener {
                     //back stack not implemented
-                    requireView().findNavController().navigate(PagerFragmentDirections.actionPagerFragmentToAlbumInFragment(it))
-
+                    view.findViewById<FrameLayout>(R.id.album_frame).removeAllViews()
+                    val fragment = AlbumInFragment(it.albumSongs)
+                    requireFragmentManager().beginTransaction().replace(R.id.album_frame,fragment).commit()
                 })
             }
         }

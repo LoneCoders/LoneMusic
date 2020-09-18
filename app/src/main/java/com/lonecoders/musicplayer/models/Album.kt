@@ -3,20 +3,18 @@ package com.lonecoders.musicplayer.models
 import android.content.Context
 import android.database.Cursor
 import android.graphics.Bitmap
-import android.os.Parcelable
 import android.provider.MediaStore.Audio.AlbumColumns.ALBUM
 import android.provider.MediaStore.Audio.AlbumColumns.ALBUM_ID
 import com.lonecoders.musicplayer.util.MusicUtils
-import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-@Parcelize
+
 data class Album(
     val albumName: String,
     val albumId: Long,
-//    val albumSongs: MutableList<Song>,
+    val albumSongs: MutableList<Song>,
     val albumCover: Bitmap?
-) : Parcelable {
+) {
 
     companion object {
         suspend fun getAlbums(cursor: Cursor?, c: Context): MutableList<Album> {
@@ -41,7 +39,7 @@ data class Album(
                             albumList += Album(
                                 thisAlbumName,
                                 thisAlbumId,
-//                                thisAlbumSongs,
+                                thisAlbumSongs,
                                 thisAlbumCover
                             )
 
