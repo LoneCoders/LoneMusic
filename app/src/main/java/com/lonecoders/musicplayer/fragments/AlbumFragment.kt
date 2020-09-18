@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 class AlbumFragment : Fragment() {
 
-
+    lateinit var views : View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,12 +45,14 @@ class AlbumFragment : Fragment() {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(activity)
                 adapter = AlbumAdapter(childFragmentManager,albumSet, onClickListener {
+                    //back stack not implemented
                     view.findViewById<FrameLayout>(R.id.album_frame).removeAllViews()
                     val fragment = AlbumInFragment(it.albumSongs)
-                    requireFragmentManager().beginTransaction().replace(R.id.album_list,fragment).commit()
+                    requireFragmentManager().beginTransaction().replace(R.id.album_frame,fragment).commit()
                 })
             }
         }
 
     }
+
 }

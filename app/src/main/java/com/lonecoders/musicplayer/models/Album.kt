@@ -18,7 +18,7 @@ data class Album(
 
     companion object {
         suspend fun getAlbums(cursor: Cursor?, c: Context): MutableList<Album> {
-            return withContext(Dispatchers.IO) {
+            return withContext(Dispatchers.Default) {
                 val albumList = mutableListOf<Album>()
                 cursor?.use {
                     if (it.moveToFirst()) {

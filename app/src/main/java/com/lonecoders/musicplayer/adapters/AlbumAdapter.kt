@@ -32,9 +32,9 @@ class AlbumAdapter(private val fm: FragmentManager, private val albumSet: Set<Al
         if(albumSet.elementAt(position).albumCover != null)
             holder.itemView.findViewById<ImageView>(R.id.album_cover).setImageBitmap(albumSet.elementAt(position).albumCover)
 
-//        holder.itemView.setOnClickListener {
-//            onClickListener.onClick(albumSet.elementAt(position))
-//        }
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(albumSet.elementAt(position))
+        }
     }
 
     override fun getItemCount(): Int {
