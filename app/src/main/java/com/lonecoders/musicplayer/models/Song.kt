@@ -47,7 +47,7 @@ data class Song(
                         try {
                             val songUri =
                                 ContentUris.withAppendedId(EXTERNAL_CONTENT_URI, thisSongId)
-                            context.contentResolver.loadThumbnail(songUri, Size(72, 72), null)
+                            context.contentResolver.loadThumbnail(songUri, Size(720, 1280), null)
                         } catch (e: FileNotFoundException) {
                             null
                         }

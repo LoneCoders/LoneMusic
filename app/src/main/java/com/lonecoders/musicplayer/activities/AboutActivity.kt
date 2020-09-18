@@ -22,34 +22,34 @@ class AboutActivity : AppCompatActivity() {
     }
 }
 
-class AboutPreference : PreferenceFragmentCompat(){
+class AboutPreference : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
 
 
-        setPreferencesFromResource(R.xml.about_preference,"my_key")
+        setPreferencesFromResource(R.xml.about_preference, "my_key")
         //Visit us
         findPreference<Preference>("github")?.setOnPreferenceClickListener {
             Intent(Intent.ACTION_VIEW).apply {
-                setData(Uri.parse("https://github.com/LoneCoders"))
+                data = Uri.parse("https://github.com/LoneCoders")
                 startActivity(this)
             }
             true
         }
         //Send feedback
         findPreference<Preference>("feedback")?.setOnPreferenceClickListener {
-            Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto", "gokulrajan01234@gmail.com", null))
+            Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "gokulrajan01234@gmail.com", null))
                 .apply { startActivity(this) }
             true
         }
         //version number
         findPreference<Preference>("version")?.setOnPreferenceClickListener {
-            Toast.makeText(context,"v1.0.0",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "eng build", Toast.LENGTH_SHORT).show()
             true
         }
         //check version
         //Yet to implement
         findPreference<Preference>("check_new_version")?.setOnPreferenceClickListener {
-            Toast.makeText(context,"Already at new verison",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Already at new version", Toast.LENGTH_SHORT).show()
             true
         }
 

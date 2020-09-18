@@ -1,10 +1,28 @@
 <resources>
-    <string name="app_name">MusicPlayer</string>
-    <string name="hello_message">Hello LoneCoders!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- About Us -->
     <string name="about_us">
         Media Player is currently an open source project on github hosted by CodeLoners.
     </string>
+    <string name="about_us_header_image_description">About Us Header Image</string>
+
+    <!-- Album -->
     <string name="album_cover_description">Album Cover</string>
+
+    <!-- Album In -->
+    <string name="album_cover_in_head_description">Album cover in the top of the album in screen</string>
+
+    <!-- App Name -->
+    <string name="app_name">MusicPlayer</string>
+
+    <!-- Menu -->
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+
+    <!-- Tab -->
+    <string name="tab_artists">Artists</string>
+    <string name="tab_songs">Songs</string>
+    <string name="tab_albums">Albums</string>
+    <string name="tab_playlists">Playlists</string>
+
 </resources>

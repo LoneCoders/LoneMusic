@@ -8,8 +8,9 @@
         android:id="@+id/album_in_cover_header"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:src="@drawable/ic_album_cover_default"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorAccent"
+        android:contentDescription="@string/album_cover_in_head_description"
+        android:src="@drawable/ic_album_cover_default" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/album_in_songs_list"

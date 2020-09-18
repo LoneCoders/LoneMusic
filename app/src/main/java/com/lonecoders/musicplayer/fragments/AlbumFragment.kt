@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.AlbumAdapter
-import com.lonecoders.musicplayer.adapters.onClickListener
+import com.lonecoders.musicplayer.adapters.CustomOnClickListener
 import com.lonecoders.musicplayer.models.Album
 import com.lonecoders.musicplayer.util.MusicUtils
 import kotlinx.coroutines.CoroutineScope
@@ -21,7 +20,6 @@ import kotlinx.coroutines.launch
 
 class AlbumFragment : Fragment() {
 
-    lateinit var views : View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,11 +42,12 @@ class AlbumFragment : Fragment() {
             view.findViewById<RecyclerView>(R.id.album_list).apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(activity)
-                adapter = AlbumAdapter(childFragmentManager,albumSet, onClickListener {
+                adapter = AlbumAdapter(albumSet, CustomOnClickListener {
                     //back stack not implemented
                     view.findViewById<FrameLayout>(R.id.album_frame).removeAllViews()
                     val fragment = AlbumInFragment(it.albumSongs)
-                    requireFragmentManager().beginTransaction().replace(R.id.album_frame,fragment).commit()
+                    childFragmentManager.beginTransaction().replace(R.id.album_frame, fragment)
+                        .commit()
                 })
             }
         }

@@ -35,7 +35,8 @@ data class Album(
                                 )
 
                             // Get Album cover from Song
-                            val thisAlbumCover = thisAlbumSongs[0].songAlbumCover // Any song in this album.
+                            val thisAlbumCover =
+                                thisAlbumSongs[0].songAlbumCover // Any song in this album.
                             albumList += Album(
                                 thisAlbumName,
                                 thisAlbumId,
