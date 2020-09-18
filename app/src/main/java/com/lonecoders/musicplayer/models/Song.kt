@@ -111,7 +111,7 @@ data class Song(
                                             )
                                         context.contentResolver.loadThumbnail(
                                             songUri,
-                                            Size(72, 72),
+                                            Size(720, 1280),
                                             null
                                         )
                                     } catch (e: FileNotFoundException) {
