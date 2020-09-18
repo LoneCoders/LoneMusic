@@ -13,7 +13,7 @@ import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.fragments.AlbumInFragment
 import com.lonecoders.musicplayer.models.Album
 
-class AlbumAdapter(private val fm: FragmentManager, private val albumSet: Set<Album>) :
+class AlbumAdapter(private val fm: FragmentManager, private val albumSet: Set<Album>,val onClickListener: onClickListener) :
     RecyclerView.Adapter<AlbumAdapter.AlbumListViewHolder>() {
     class AlbumListViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView)
@@ -32,14 +32,16 @@ class AlbumAdapter(private val fm: FragmentManager, private val albumSet: Set<Al
         if(albumSet.elementAt(position).albumCover != null)
             holder.itemView.findViewById<ImageView>(R.id.album_cover).setImageBitmap(albumSet.elementAt(position).albumCover)
 
-        holder.itemView.setOnClickListener {
-            val fragment = AlbumInFragment(albumSet.elementAt(position).albumSongs)
-            fm.beginTransaction().replace(R.id.album_list,fragment).commit()
-        }
+//        holder.itemView.setOnClickListener {
+//            onClickListener.onClick(albumSet.elementAt(position))
+//        }
     }
 
     override fun getItemCount(): Int {
         return albumSet.size
     }
 
+}
+class onClickListener (val clickListener : (album:Album) -> Unit){
+    fun onClick(album : Album) = clickListener(album)
 }
