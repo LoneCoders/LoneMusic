@@ -3,9 +3,9 @@ package com.lonecoders.musicplayer.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.models.Album
 
@@ -28,9 +28,10 @@ class AlbumAdapter(
         holder.itemView.findViewById<TextView>(R.id.album_name).text =
             albumSet.elementAt(position).albumName
 
-        if (albumSet.elementAt(position).albumCover != null)
-            holder.itemView.findViewById<ImageView>(R.id.album_cover)
-                .setImageBitmap(albumSet.elementAt(position).albumCover)
+        Glide.with(holder.itemView)
+            .load(albumSet.elementAt(position).albumCoverUri)
+            .placeholder(R.drawable.ic_album_cover_default)
+            .into(holder.itemView.findViewById(R.id.album_cover))
 
         holder.itemView.setOnClickListener {
             onClickListener.onClick(albumSet.elementAt(position))

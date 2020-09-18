@@ -3,9 +3,9 @@ package com.lonecoders.musicplayer.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.models.Song
 
@@ -25,9 +25,11 @@ class AlbumInAdapter(private val songsSet: Set<Song>) :
         val songInfo =
             "${songsSet.elementAt(position).artistName} - ${songsSet.elementAt(position).albumName}"
         holder.itemView.findViewById<TextView>(R.id.song_info).text = songInfo
-        if (songsSet.elementAt(position).songAlbumCover != null)
-            holder.itemView.findViewById<ImageView>(R.id.album_cover_in_song)
-                .setImageBitmap(songsSet.elementAt(position).songAlbumCover)
+
+        Glide.with(holder.itemView)
+            .load(songsSet.elementAt(position).songAlbumCoverUri)
+            .placeholder(R.drawable.ic_song_cover_default)
+            .into(holder.itemView.findViewById(R.id.album_cover_in_song))
     }
 
     override fun getItemCount(): Int {

@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@color/colorAccent"
-        android:contentDescription="@string/album_cover_in_head_description"
-        android:src="@drawable/ic_album_cover_default" />
+        android:contentDescription="@string/album_cover_in_head_description" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/album_in_songs_list"

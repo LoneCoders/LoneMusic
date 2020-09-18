@@ -21,8 +21,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:background="@color/colorAccent"
-                android:contentDescription="@string/album_cover_description"
-                android:src="@drawable/ic_album_cover_default" />
+                android:contentDescription="@string/album_cover_description" />
 
 
             <TextView

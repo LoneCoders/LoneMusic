@@ -1,8 +1,9 @@
 package com.lonecoders.musicplayer.models
 
+import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
-import android.graphics.Bitmap
+import android.net.Uri
 import android.provider.MediaStore.Audio.AlbumColumns.ALBUM
 import android.provider.MediaStore.Audio.AlbumColumns.ALBUM_ID
 import com.lonecoders.musicplayer.util.MusicUtils
@@ -13,7 +14,7 @@ data class Album(
     val albumName: String,
     val albumId: Long,
     val albumSongs: MutableList<Song>,
-    val albumCover: Bitmap?
+    val albumCoverUri: Uri
 ) {
 
     companion object {
@@ -29,19 +30,17 @@ data class Album(
                             val thisAlbumName = it.getString(albumNameColumn)
                             val thisAlbumSongs =
                                 Song.getSongsFromCursor(
-                                    c,
                                     MusicUtils.getCursorForSongs(c),
                                     thisAlbumId
                                 )
 
-                            // Get Album cover from Song
-                            val thisAlbumCover =
-                                thisAlbumSongs[0].songAlbumCover // Any song in this album.
+                            val artUri = Uri.parse("content://media/external/audio/albumart")
+                            val thisAlbumCoverUri = ContentUris.withAppendedId(artUri,thisAlbumId)
                             albumList += Album(
                                 thisAlbumName,
                                 thisAlbumId,
                                 thisAlbumSongs,
-                                thisAlbumCover
+                                thisAlbumCoverUri
                             )
 
                         } while (it.moveToNext())
