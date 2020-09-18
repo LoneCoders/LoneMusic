@@ -25,23 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        binding.pager.adapter = ViewPagerAdapter(supportFragmentManager)
-        binding.tabLayout.setupWithViewPager(binding.pager)
-        binding.toolbar.
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.about -> {
-                        Intent(applicationContext, AboutActivity::class.java).apply {
-                            startActivity(
-                                this
-                            )
-                        }
-                        true
-                    }
-                    else -> false
-                }
 
-        }
+
     }
 
 
