@@ -6,6 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.lonecoders.musicplayer.R
+import com.lonecoders.musicplayer.models.Album
+import com.lonecoders.musicplayer.util.MusicUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class SongsFragment : Fragment() {

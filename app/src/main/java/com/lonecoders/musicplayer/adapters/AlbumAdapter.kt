@@ -3,17 +3,19 @@ package com.lonecoders.musicplayer.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.models.Album
 
 class AlbumAdapter(
-    private val albumSet: Set<Album>,
     private val onClickListener: CustomOnClickListener
 ) :
-    RecyclerView.Adapter<AlbumAdapter.AlbumListViewHolder>() {
+    ListAdapter<Album,AlbumAdapter.AlbumListViewHolder>(DiffCallback()) {
     class AlbumListViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView)
 
@@ -26,20 +28,29 @@ class AlbumAdapter(
 
     override fun onBindViewHolder(holder: AlbumListViewHolder, position: Int) {
         holder.itemView.findViewById<TextView>(R.id.album_name).text =
-            albumSet.elementAt(position).albumName
+            getItem(position).albumName
 
         Glide.with(holder.itemView)
-            .load(albumSet.elementAt(position).albumCoverUri)
+            .load(getItem(position).albumCoverUri)
             .placeholder(R.drawable.ic_album_cover_default)
-            .into(holder.itemView.findViewById(R.id.album_cover))
+            .into(holder.itemView.findViewById<ImageView>(R.id.album_cover))
 
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(albumSet.elementAt(position))
+            onClickListener.onClick(getItem(position))
         }
     }
 
-    override fun getItemCount(): Int {
-        return albumSet.size
+
+
+}
+
+class DiffCallback : DiffUtil.ItemCallback<Album>(){
+    override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
+        return oldItem === newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Album, newItem: Album): Boolean {
+        return oldItem == newItem
     }
 
 }
