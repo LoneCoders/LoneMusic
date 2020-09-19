@@ -27,9 +27,10 @@ class AlbumAdapter(
     }
 
     override fun onBindViewHolder(holder: AlbumListViewHolder, position: Int) {
+        if(getItem(position) == null)
+            return
         holder.itemView.findViewById<TextView>(R.id.album_name).text =
             getItem(position).albumName
-
         Glide.with(holder.itemView)
             .load(getItem(position).albumCoverUri)
             .placeholder(R.drawable.ic_album_cover_default)
