@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/pagerFragment">
+
+    <fragment
+        android:id="@+id/pagerFragment"
+        android:name="com.lonecoders.musicplayer.fragments.PagerFragment"
+        android:label="PagerFragment" >
+        <action
+            android:id="@+id/action_pagerFragment_to_albumSongFragment"
+            app:destination="@id/albumSongsFragment" />
+        <action
+            android:id="@+id/action_pagerFragment_to_artistSongs"
+            app:destination="@id/artistSongs" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumSongsFragment"
+        android:name="com.lonecoders.musicplayer.fragments.AlbumSongs"
+        android:label="AlbumInFragment">
+        <argument
+            android:name="album"
+            app:argType="com.lonecoders.musicplayer.models.Album" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistSongs"
+        android:name="com.lonecoders.musicplayer.fragments.ArtistSongs"
+        android:label="ArtistSongs" >
+        <argument
+            android:name="arists"
+            app:argType="com.lonecoders.musicplayer.models.Artists" />
+    </fragment>
+</navigation>

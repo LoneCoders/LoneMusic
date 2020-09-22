@@ -3,8 +3,8 @@ package com.lonecoders.musicplayer.util
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
+import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media.*
-import com.lonecoders.musicplayer.models.Album
 
 class MusicUtils {
 
@@ -22,14 +22,22 @@ class MusicUtils {
             val projection =
                 arrayOf(
                     ALBUM_ID,
-                    ALBUM,
-                    ARTIST
+                    MediaStore.Audio.AlbumColumns.ALBUM
                 )
             return contentResolver.query(musicUri, projection, null, null, null)
         }
 
-        fun albumListToAlbumSet(list: MutableList<Album>):Set<Album>{
-            return list.toSet()
+        fun getCursorForArtists(context: Context): Cursor? {
+            val contentResolver = context.contentResolver
+            val musicUri: Uri = EXTERNAL_CONTENT_URI
+            val projection =
+                arrayOf(
+                    ARTIST_ID,
+                    MediaStore.MediaColumns.TITLE,
+                    MediaStore.Audio.ArtistColumns.ARTIST,
+                    MediaStore.Audio.AlbumColumns.ALBUM
+                )
+            return contentResolver.query(musicUri, projection, null, null, null)
         }
     }
 }

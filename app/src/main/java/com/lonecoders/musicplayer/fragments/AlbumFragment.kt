@@ -5,15 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.snackbar.Snackbar
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.AlbumAdapter
 import com.lonecoders.musicplayer.adapters.CustomOnClickListener
@@ -49,11 +45,7 @@ class AlbumFragment : Fragment() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(activity)
             adapter = AlbumAdapter(CustomOnClickListener {
-                //back stack not implemented
-                binding.albumFrame.removeAllViews()
-                val fragment = AlbumInFragment(it.albumSongs)
-                childFragmentManager.beginTransaction().replace(R.id.album_frame, fragment)
-                    .commit()
+                requireView().findNavController().navigate(PagerFragmentDirections.actionPagerFragmentToAlbumSongFragment(it))
 
             })
             this.adapter = adapter
@@ -70,7 +62,7 @@ class AlbumFragment : Fragment() {
         }
         //Refresh action visibility
         viewModel.showRefresh.observe(viewLifecycleOwner, Observer {
-            view.findViewById<SwipeRefreshLayout>(R.id.refresh).isRefreshing = it
+            binding.refresh.isRefreshing = it
         })
 
 
@@ -78,8 +70,8 @@ class AlbumFragment : Fragment() {
     }
     //Refreshing fetched song to avoid missing
     //Reason for nt implementing in ViewCreated is job() in viewModel wont be completed by that state
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         if(viewModel.refresh) {
             viewModel.refresh()
             viewModel.refresh = false

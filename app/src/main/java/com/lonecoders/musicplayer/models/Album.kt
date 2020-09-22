@@ -4,19 +4,20 @@ import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
+import android.os.Parcelable
 import android.provider.MediaStore.Audio.AlbumColumns.ALBUM
 import android.provider.MediaStore.Audio.AlbumColumns.ALBUM_ID
-import android.widget.Toast
 import com.lonecoders.musicplayer.util.MusicUtils
+import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+@Parcelize
 data class Album(
     val albumName: String,
     val albumId: Long,
-    val albumSongs: MutableList<Song>,
     val albumCoverUri: Uri
-) {
+):Parcelable {
 
     companion object {
         suspend fun getAlbums(cursor: Cursor?, c: Context): MutableList<Album> {
@@ -29,24 +30,25 @@ data class Album(
                         do {
                             val thisAlbumId = it.getLong(albumIdColumn)
                             val thisAlbumName = it.getString(albumNameColumn)
-                            val thisAlbumSongs =
-                                Song.getSongsFromCursor(
-                                    MusicUtils.getCursorForSongs(c),
-                                    thisAlbumId
-                                )
+
 
                             val artUri = Uri.parse("content://media/external/audio/albumart")
                             val thisAlbumCoverUri = ContentUris.withAppendedId(artUri,thisAlbumId)
                             albumList += Album(
                                 thisAlbumName,
                                 thisAlbumId,
-                                thisAlbumSongs,
                                 thisAlbumCoverUri
                             )
                         } while (it.moveToNext())
                 }
                 albumList
             }
+        }
+        fun getSongsByAlbumId(c:Context,albumId: Long):MutableList<Song>{
+            return Song.getSongsFromCursor(
+                    MusicUtils.getCursorForSongs(c),
+                    albumId
+                )
         }
     }
 }

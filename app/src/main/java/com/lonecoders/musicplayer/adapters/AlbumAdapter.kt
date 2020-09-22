@@ -15,7 +15,7 @@ import com.lonecoders.musicplayer.models.Album
 class AlbumAdapter(
     private val onClickListener: CustomOnClickListener
 ) :
-    ListAdapter<Album,AlbumAdapter.AlbumListViewHolder>(DiffCallback()) {
+    ListAdapter<Album,AlbumAdapter.AlbumListViewHolder>(DiffAlbumCallback()) {
     class AlbumListViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView)
 
@@ -45,7 +45,7 @@ class AlbumAdapter(
 
 }
 
-class DiffCallback : DiffUtil.ItemCallback<Album>(){
+class DiffAlbumCallback : DiffUtil.ItemCallback<Album>(){
     override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
         return oldItem === newItem
     }
