@@ -27,7 +27,7 @@ class ArtistSongs : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val args : ArtistSongsArgs by navArgs()
         val artist = args.arists
-        var artistSongs = Song.getSongsFromCursor(artist!!.artistId,MusicUtils.getCursorForSongs(requireContext()))
+        var artistSongs = Song.getSongsFromCursor(artist!!.artistName,MusicUtils.getCursorForSongs(requireContext()))
 
 
         view.findViewById<RecyclerView>(R.id.album_in_songs_list).apply {

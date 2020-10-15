@@ -15,6 +15,7 @@ import com.lonecoders.musicplayer.adapters.AlbumAdapter
 import com.lonecoders.musicplayer.adapters.CustomOnClickListener
 import com.lonecoders.musicplayer.databinding.FragmentAlbumBinding
 import com.lonecoders.musicplayer.models.Album
+import com.lonecoders.musicplayer.util.FormatList
 import com.lonecoders.musicplayer.util.MusicUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -68,16 +69,8 @@ class AlbumFragment : Fragment() {
 
 
     }
-    //Refreshing fetched song to avoid missing
-    //Reason for nt implementing in ViewCreated is job() in viewModel wont be completed by that state
-    override fun onStart() {
-        super.onStart()
-        if(viewModel.refresh) {
-            viewModel.refresh()
-            viewModel.refresh = false
-        }
 
-    }
+
 }
 
 class AlbumViewModel(val app : Application) : AndroidViewModel(app){
@@ -92,9 +85,12 @@ class AlbumViewModel(val app : Application) : AndroidViewModel(app){
     fun refresh(){
         showRefresh.value = true
         CoroutineScope(job + Dispatchers.Main).launch {
-            albumSet.value =
+
+
+            albumSet.value = FormatList().formatAlbum(
                 Album.getAlbums(
                     MusicUtils.getCursorForAlbums(app.baseContext),app.baseContext)
+            )
             showRefresh.value = false
         }
 

@@ -15,6 +15,7 @@ import com.lonecoders.musicplayer.adapters.ArtistsAdapter
 import com.lonecoders.musicplayer.adapters.CustomOnArtistListener
 import com.lonecoders.musicplayer.databinding.FragmentArtistsBinding
 import com.lonecoders.musicplayer.models.Artists
+import com.lonecoders.musicplayer.util.FormatList
 import com.lonecoders.musicplayer.util.MusicUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -69,14 +70,7 @@ class ArtistsFragment : Fragment() {
 
     }
 
-    override fun onStart(){
-        super.onStart()
-        if(viewModel.refresh) {
-            viewModel.refresh()
-            viewModel.refresh = false
-        }
 
-    }
 }
 
 class ArtistsViewModel(val app : Application) : AndroidViewModel(app){
@@ -91,10 +85,11 @@ class ArtistsViewModel(val app : Application) : AndroidViewModel(app){
     fun refresh(){
         showRefresh.value = true
         CoroutineScope(job + Dispatchers.Main).launch {
-            artistSet.value =
+            artistSet.value = FormatList().formatArtists(
                 Artists.getArtists(
                     MusicUtils.getCursorForArtists(app.baseContext),app.baseContext
                 )
+            )
             showRefresh.value = false
         }
 

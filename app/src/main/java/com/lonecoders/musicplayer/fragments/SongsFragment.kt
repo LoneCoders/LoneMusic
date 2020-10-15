@@ -62,16 +62,7 @@ class SongsFragment : Fragment() {
 
 
     }
-    //Refreshing fetched song to avoid missing
-    //Reason for nt implementing in ViewCreated is job() in viewModel wont be completed by that state
-    override fun onResume() {
-        super.onResume()
-        if(viewModel.refresh) {
-            viewModel.refresh()
-            viewModel.refresh = false
-        }
 
-    }
 }
 
 class SongViewModel(val app : Application) : AndroidViewModel(app){

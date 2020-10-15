@@ -55,7 +55,7 @@ data class Song(
 
         fun getSongsFromCursor(
             cursor: Cursor?,
-            albumId: Long
+            album: String
         ): MutableList<Song> {
             val songList = mutableListOf<Song>()
             cursor?.use {
@@ -76,7 +76,7 @@ data class Song(
                         val thisSongAlbumCoverUri =
                             ContentUris.withAppendedId(albumArtUri, thisAlbumId)
 
-                        if (thisAlbumId == albumId) {
+                        if (thisAlbum == album) {
 
 
                             songList += Song(
@@ -94,7 +94,7 @@ data class Song(
             return songList
         }
 
-        fun getSongsFromCursor(artistsId : Long, cursor : Cursor?) : MutableList<Song>{
+        fun getSongsFromCursor(artists : String, cursor : Cursor?) : MutableList<Song>{
             val songList = mutableListOf<Song>()
             cursor?.use {
                 val idColumn = it.getColumnIndex(_ID)
@@ -111,8 +111,7 @@ data class Song(
                         val thisArtistsId = it.getLong(artistIdColumn)
                         val thisArtist = it.getString(artistColumn)
 
-
-                        if (thisArtistsId == artistsId) {
+                        if (thisArtist == artists) {
 
 
                             songList += Song(

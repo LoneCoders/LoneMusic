@@ -44,10 +44,10 @@ data class Album(
                 albumList
             }
         }
-        fun getSongsByAlbumId(c:Context,albumId: Long):MutableList<Song>{
+        fun getSongsByAlbumId(c:Context,album: String):MutableList<Song>{
             return Song.getSongsFromCursor(
                     MusicUtils.getCursorForSongs(c),
-                    albumId
+                    album
                 )
         }
     }
