@@ -36,7 +36,7 @@ class AlbumSongs : Fragment() {
         view.findViewById<RecyclerView>(R.id.album_in_songs_list).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = SongsAdapter().apply {  submitList(albumSongs)}
+            adapter = SongsAdapter(SongsAdapter.SongsClickListener {  }).apply {  submitList(albumSongs)}
 
         }
     }

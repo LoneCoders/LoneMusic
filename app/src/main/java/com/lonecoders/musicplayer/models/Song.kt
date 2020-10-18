@@ -15,7 +15,8 @@ data class Song(
     val albumName: String,
     val albumId: Long,
     val artistName: String,
-    val songAlbumCoverUri: Uri?
+    val songAlbumCoverUri: Uri?,
+    val songUri : Uri
 ):Parcelable {
     companion object {
         fun getSongsFromCursor(cursor: Cursor?): MutableList<Song> {
@@ -36,14 +37,18 @@ data class Song(
                     val albumArtUri = Uri.parse("content://media/external/audio/albumart")
                     val thisSongAlbumCoverUri =
                         ContentUris.withAppendedId(albumArtUri, thisSongAlbumId)
-
+                    val contentUri: Uri = ContentUris.withAppendedId(
+                        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                        thisSongId
+                    )
                     songList += Song(
                         thisSongId,
                         thisSongTitle,
                         thisSongAlbum,
                         thisSongAlbumId,
                         thisSongArtist,
-                        thisSongAlbumCoverUri
+                        thisSongAlbumCoverUri,
+                        contentUri
                     )
                 }
                 it.close()
@@ -75,7 +80,10 @@ data class Song(
                         val albumArtUri = Uri.parse("content://media/external/audio/albumart")
                         val thisSongAlbumCoverUri =
                             ContentUris.withAppendedId(albumArtUri, thisAlbumId)
-
+                        val contentUri: Uri = ContentUris.withAppendedId(
+                            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                            thisSongId
+                        )
                         if (thisAlbum == album) {
 
 
@@ -85,7 +93,8 @@ data class Song(
                                 thisAlbum,
                                 thisAlbumId,
                                 thisArtist,
-                                thisSongAlbumCoverUri
+                                thisSongAlbumCoverUri,
+                                contentUri
                             )
                         }
                     } while (it.moveToNext())
@@ -110,7 +119,10 @@ data class Song(
                         val thisAlbum = it.getString(albumColumn)
                         val thisArtistsId = it.getLong(artistIdColumn)
                         val thisArtist = it.getString(artistColumn)
-
+                        val contentUri: Uri = ContentUris.withAppendedId(
+                            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                            thisSongId
+                        )
                         if (thisArtist == artists) {
 
 
@@ -120,7 +132,8 @@ data class Song(
                                 thisAlbum,
                                 thisArtistsId,
                                 thisArtist,
-                                null
+                                null,
+                                contentUri
                             )
                         }
                     } while (it.moveToNext())

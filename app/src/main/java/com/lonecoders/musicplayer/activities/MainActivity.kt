@@ -13,6 +13,8 @@ import com.lonecoders.musicplayer.databinding.ActivityPermissionErrorBinding
 import com.lonecoders.musicplayer.databinding.SplashScreenBinding
 
 
+
+
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {

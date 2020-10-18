@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.lonecoders.musicplayer.R
@@ -41,7 +42,9 @@ class SongsFragment : Fragment() {
         binding.songList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(activity)
-            adapter = SongsAdapter()
+            adapter = SongsAdapter(SongsAdapter.SongsClickListener {
+                view.findNavController().navigate(PagerFragmentDirections.actionPagerFragmentToPlayerFragment(it))
+            })
             this.adapter = adapter
         }
 

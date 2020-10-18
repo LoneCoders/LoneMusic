@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.models.Song
 
-class SongsAdapter:
+class SongsAdapter(val clickListener: SongsClickListener):
     ListAdapter<Song,SongsAdapter.SongListViewHolder>(DiffCallBack()) {
     class SongListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -28,6 +28,10 @@ class SongsAdapter:
             "${getItem(position).artistName} - ${getItem(position).albumName}"
         holder.itemView.findViewById<TextView>(R.id.song_info).text = songInfo
 
+        holder.itemView.setOnClickListener {
+            clickListener.onClick(getItem(position))
+        }
+
         Glide.with(holder.itemView)
             .load(getItem(position).songAlbumCoverUri)
             .placeholder(R.drawable.ic_song_cover_default)
@@ -43,6 +47,9 @@ class SongsAdapter:
             return oldItem == newItem
         }
 
+    }
+    class SongsClickListener(val clickListener :(song : Song) -> Unit){
+        fun onClick(song :Song) = clickListener(song)
     }
 }
 
