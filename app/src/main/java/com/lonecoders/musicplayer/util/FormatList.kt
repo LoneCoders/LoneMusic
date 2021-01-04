@@ -5,8 +5,8 @@ import com.lonecoders.musicplayer.models.Artists
 
 class FormatList{
     fun formatArtists(list : MutableList<Artists>) : MutableList<Artists>{
-        var found : Boolean = false
-        var newlist = mutableListOf<Artists>()
+        var found: Boolean
+        val newlist = mutableListOf<Artists>()
         for( item in list){
             found = false
             for(newItem in newlist){
@@ -21,8 +21,8 @@ class FormatList{
         return newlist
     }
     fun formatAlbum(list: MutableList<Album>) : MutableList<Album>{
-        var found : Boolean = false
-        var newlist = mutableListOf<Album>()
+        var found : Boolean
+        val newlist = mutableListOf<Album>()
         for( item in list){
             found = false
             for(newItem in newlist){

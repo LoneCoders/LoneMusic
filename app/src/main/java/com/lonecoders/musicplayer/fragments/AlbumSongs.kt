@@ -27,7 +27,7 @@ class AlbumSongs : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val args : AlbumSongsArgs by navArgs()
         val album = args.album
-        var albumSongs = Album.getSongsByAlbumId(requireContext(),album!!.albumName)
+        var albumSongs = Album.getSongsByAlbumId(requireContext(), album.albumName)
         Glide.with(this)
             .load(albumSongs[0].songAlbumCoverUri)
             .placeholder(R.drawable.ic_album_cover_default)

@@ -16,7 +16,7 @@ data class Artists(
 ):Parcelable {
 
     companion object {
-        suspend fun getArtists(cursor: Cursor?, c: Context): MutableList<Artists> {
+        suspend fun getArtists(cursor: Cursor?): MutableList<Artists> {
             return withContext(Dispatchers.IO) {
                 val list = mutableListOf<Artists>()
                 cursor?.use {

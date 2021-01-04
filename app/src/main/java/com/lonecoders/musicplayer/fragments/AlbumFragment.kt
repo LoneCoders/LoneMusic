@@ -89,7 +89,7 @@ class AlbumViewModel(val app : Application) : AndroidViewModel(app){
 
             albumSet.value = FormatList().formatAlbum(
                 Album.getAlbums(
-                    MusicUtils.getCursorForAlbums(app.baseContext),app.baseContext)
+                    MusicUtils.getCursorForAlbums(app.baseContext))
             )
             showRefresh.value = false
         }
@@ -99,6 +99,7 @@ class AlbumViewModel(val app : Application) : AndroidViewModel(app){
 
 
 class AlbumVMFactory(val app : Application) : ViewModelProvider.Factory{
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
             return AlbumViewModel(app) as T

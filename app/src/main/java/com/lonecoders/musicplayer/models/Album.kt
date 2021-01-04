@@ -20,7 +20,7 @@ data class Album(
 ):Parcelable {
 
     companion object {
-        suspend fun getAlbums(cursor: Cursor?, c: Context): MutableList<Album> {
+        suspend fun getAlbums(cursor: Cursor?): MutableList<Album> {
             return withContext(Dispatchers.IO) {
                 val albumList = mutableListOf<Album>()
                 cursor?.use {

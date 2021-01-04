@@ -87,8 +87,7 @@ class ArtistsViewModel(val app : Application) : AndroidViewModel(app){
         CoroutineScope(job + Dispatchers.Main).launch {
             artistSet.value = FormatList().formatArtists(
                 Artists.getArtists(
-                    MusicUtils.getCursorForArtists(app.baseContext),app.baseContext
-                )
+                    MusicUtils.getCursorForArtists(app.baseContext))
             )
             showRefresh.value = false
         }
@@ -98,6 +97,7 @@ class ArtistsViewModel(val app : Application) : AndroidViewModel(app){
 
 
 class ArtistsVMFactory(val app : Application) : ViewModelProvider.Factory{
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ArtistsViewModel::class.java)) {
             return ArtistsViewModel(app) as T
