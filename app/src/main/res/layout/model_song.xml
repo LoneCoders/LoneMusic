@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/song_model"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="5dp">
+    android:layout_height="80dp"
+    android:orientation="horizontal"
+    android:background="@android:color/white">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="6dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/album_cover_in_song"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="2dp"
-                android:background="@color/colorAccent"
-                android:contentDescription="@string/album_cover_description" />
+                <ImageView
+                    android:id="@+id/album_cover_in_song"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorAccent"
+                    android:contentDescription="@string/album_cover_description" />
+            </androidx.cardview.widget.CardView>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/album_in_song_name"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="4dp"
+                    android:layout_height="25dp"
                     android:ellipsize="end"
-                    android:textStyle="bold" />
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:id="@+id/song_info"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_height="25dp"
                     android:ellipsize="end"
+                    android:singleLine="true"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
 </LinearLayout>
