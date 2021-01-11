@@ -17,7 +17,8 @@
             app:destination="@id/artistSongs" />
         <action
             android:id="@+id/action_pagerFragment_to_playerFragment"
-            app:destination="@id/playerFragment" />
+            app:destination="@id/playerFragment"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/albumSongsFragment"
@@ -40,7 +41,10 @@
         android:name="com.lonecoders.musicplayer.fragments.PlayerFragment"
         android:label="PlayerFragment" >
         <argument
-            android:name="song"
-            app:argType="com.lonecoders.musicplayer.models.Song" />
+            android:name="position"
+            app:argType="integer" />
+        <argument
+            android:name="songLists"
+            app:argType="com.lonecoders.musicplayer.models.Song[]" />
     </fragment>
 </navigation>

@@ -23,30 +23,31 @@
                     android:contentDescription="@string/album_cover_description" />
             </androidx.cardview.widget.CardView>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/album_in_song_name"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/black" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/song_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:textColor="@android:color/darker_gray" />
+                    <TextView
+                        android:id="@+id/album_in_song_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/song_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@android:color/darker_gray" />
+
+                </LinearLayout>
+
+
 </LinearLayout>

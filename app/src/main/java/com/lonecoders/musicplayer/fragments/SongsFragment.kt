@@ -20,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.nio.channels.Selector
 
 class SongsFragment : Fragment() {
     lateinit var binding : FragmentSongsBinding
@@ -43,7 +44,9 @@ class SongsFragment : Fragment() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(activity)
             adapter = SongsAdapter(SongsAdapter.SongsClickListener {
-                view.findNavController().navigate(PagerFragmentDirections.actionPagerFragmentToPlayerFragment(it))
+                val pos = viewModel.songSet.value!!.indexOf(it)
+                view.findNavController().navigate(PagerFragmentDirections.
+                actionPagerFragmentToPlayerFragment(pos, viewModel.songSet.value!!.toTypedArray()))
             })
             this.adapter = adapter
         }
