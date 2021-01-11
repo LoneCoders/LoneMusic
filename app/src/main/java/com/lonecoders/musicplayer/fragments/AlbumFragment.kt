@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.AlbumAdapter
@@ -44,7 +45,7 @@ class AlbumFragment : Fragment() {
         lateinit var adapter : AlbumAdapter
         binding.albumList.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = GridLayoutManager(activity, 2)
             adapter = AlbumAdapter(CustomOnClickListener {
                 requireView().findNavController().navigate(PagerFragmentDirections.actionPagerFragmentToAlbumSongFragment(it))
 
