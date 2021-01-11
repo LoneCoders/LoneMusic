@@ -34,6 +34,7 @@ class AlbumAdapter(
         Glide.with(holder.itemView)
             .load(getItem(position).albumCoverUri)
             .placeholder(R.drawable.ic_album_cover_default)
+            .centerCrop()
             .into(holder.itemView.findViewById<ImageView>(R.id.album_cover))
 
         holder.itemView.setOnClickListener {
