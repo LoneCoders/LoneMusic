@@ -35,6 +35,7 @@ class SongsAdapter(val clickListener: SongsClickListener):
         Glide.with(holder.itemView)
             .load(getItem(position).songAlbumCoverUri)
             .placeholder(R.drawable.ic_song_cover_default)
+            .centerCrop()
             .into(holder.itemView.findViewById(R.id.album_cover_in_song))
     }
 
