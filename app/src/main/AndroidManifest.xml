@@ -17,7 +17,8 @@
                 <action android:name="android.media.browse.MediaBrowserService"/>
             </intent-filter>
         </service>
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".activities.PermissionError" />
         <activity
             android:name=".activities.AboutActivity"

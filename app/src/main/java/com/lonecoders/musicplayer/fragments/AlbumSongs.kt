@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,7 +44,12 @@ class AlbumSongs : Fragment() {
         view.findViewById<RecyclerView>(R.id.album_in_songs_list).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = SongsAdapter(SongsAdapter.SongsClickListener {  }).apply {  submitList(albumSongs)}
+            adapter = SongsAdapter(SongsAdapter.SongsClickListener {
+                val pos = albumSongs.indexOf(it)
+                requireView().findNavController().navigate(AlbumSongsDirections.actionAlbumSongsFragmentToPlayerFragment(pos,
+                    albumSongs.toTypedArray()
+                ))
+            }).apply {  submitList(albumSongs)}
 
         }
     }

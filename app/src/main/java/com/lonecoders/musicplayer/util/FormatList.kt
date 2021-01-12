@@ -1,5 +1,4 @@
 package com.lonecoders.musicplayer.util
-import android.util.Log
 import com.lonecoders.musicplayer.models.Album
 import com.lonecoders.musicplayer.models.Artists
 

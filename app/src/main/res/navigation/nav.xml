@@ -27,6 +27,10 @@
         <argument
             android:name="album"
             app:argType="com.lonecoders.musicplayer.models.Album" />
+        <action
+            android:id="@+id/action_albumSongsFragment_to_playerFragment"
+            app:destination="@id/playerFragment"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/artistSongs"
