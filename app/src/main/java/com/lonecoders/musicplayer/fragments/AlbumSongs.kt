@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,7 +32,13 @@ class AlbumSongs : Fragment() {
         Glide.with(this)
             .load(albumSongs[0].songAlbumCoverUri)
             .placeholder(R.drawable.ic_album_cover_default)
+            .centerCrop()
             .into(view.findViewById(R.id.album_in_cover_header))
+
+        val albumNameTextView = view.findViewById<TextView>(R.id.album_in_name)
+        albumNameTextView.text = album.albumName
+        albumNameTextView.isSelected = true
+
 
         view.findViewById<RecyclerView>(R.id.album_in_songs_list).apply {
             setHasFixedSize(true)
