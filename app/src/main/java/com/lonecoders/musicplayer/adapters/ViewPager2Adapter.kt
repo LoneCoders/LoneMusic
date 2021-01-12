@@ -9,15 +9,15 @@ import com.lonecoders.musicplayer.fragments.SongsFragment
 
 class ViewPager2Adapter(fragment : Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
-        return 4
+        return 3 //4
     }
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> SongsFragment()
             1 -> AlbumFragment()
-            2 -> ArtistsFragment()
-            3 -> PlaylistsFragment()
+            //2 -> ArtistsFragment()
+            2 -> PlaylistsFragment()
             else -> SongsFragment()
         }
     }

@@ -30,8 +30,8 @@ class PagerFragment : Fragment() {
             tab.text = when(position){
                 0 -> "Songs"
                 1 -> "Album"
-                2 -> "Artist"
-                3 -> "Playlists"
+                //2 -> "Artist"
+                2 -> "Playlists"
                 else -> ""
             }
 
