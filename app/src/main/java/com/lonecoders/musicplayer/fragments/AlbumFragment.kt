@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.AlbumAdapter
 import com.lonecoders.musicplayer.adapters.CustomOnClickListener
@@ -92,6 +91,7 @@ class AlbumViewModel(val app : Application) : AndroidViewModel(app){
                 Album.getAlbums(
                     MusicUtils.getCursorForAlbums(app.baseContext))
             )
+
             showRefresh.value = false
         }
 

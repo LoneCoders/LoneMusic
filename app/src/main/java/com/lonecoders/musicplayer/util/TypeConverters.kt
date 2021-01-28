@@ -7,18 +7,22 @@ import com.lonecoders.musicplayer.models.Song
 
 
 class TypeConverters {
-    val gson = Gson()
 
+
+    @TypeConverter
+    fun songListToString(someObjects: List<Song>): String? {
+        val listType = object : TypeToken<List<Song>>(){}.type
+        return Gson().toJson(someObjects,listType)
+    }
     @TypeConverter
     fun stringToSong(data : String):List<Song>{
 
-        val listType = object : TypeToken<List<Song?>?>() {}.type
+        val listType = object : TypeToken<List<Song>>(){}.type
 
-        return gson.fromJson(data, listType)
+        return Gson().fromJson(data,listType)
+
     }
 
-    @TypeConverter
-    fun songListToString(someObjects: List<Song?>?): String? {
-        return gson.toJson(someObjects)
-    }
+
+
 }

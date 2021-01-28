@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.lonecoders.musicplayer.models.Playlists
 
 @Database(entities =  [Playlists::class],version = 1,exportSchema = false)
 @TypeConverters(com.lonecoders.musicplayer.util.TypeConverters::class)
@@ -19,7 +20,10 @@ abstract class PlayListsDb : RoomDatabase() {
                 var instance = INSTANCE
                 if (instance == null) {
                     instance =
-                        Room.databaseBuilder(ctx, PlayListsDb::class.java, "lone-music.db").build()
+                        Room.databaseBuilder(ctx, PlayListsDb::class.java, "lone-music.db")
+                            .allowMainThreadQueries()
+                            .fallbackToDestructiveMigration()
+                            .build()
                 }
                 INSTANCE = instance
                 return instance

@@ -20,7 +20,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import java.nio.channels.Selector
 
 class SongsFragment : Fragment() {
     lateinit var binding : FragmentSongsBinding
@@ -85,6 +84,10 @@ class SongViewModel(val app : Application) : AndroidViewModel(app){
         CoroutineScope(job + Dispatchers.Main).launch {
             songSet.value =
                 Song.getSongsFromCursor(MusicUtils.getCursorForSongs(app.baseContext))
+            if(songSet.value != null)
+                songSet.value!!.sortBy {
+                    it.songName
+                }
             showRefresh.value = false
         }
 

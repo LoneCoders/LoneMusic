@@ -33,6 +33,9 @@ class FormatList{
 
 
         }
+        newlist.sortBy {
+            it.albumName
+        }
         return newlist
     }
 }

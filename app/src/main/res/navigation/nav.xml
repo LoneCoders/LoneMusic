@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
     app:startDestination="@id/pagerFragment">
 
@@ -19,6 +18,12 @@
             android:id="@+id/action_pagerFragment_to_playerFragment"
             app:destination="@id/playerFragment"
             app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_pagerFragment_to_createPlaylists"
+            app:destination="@id/createPlaylists" />
+        <action
+            android:id="@+id/action_pagerFragment_to_playListSongs"
+            app:destination="@id/playListSongs" />
     </fragment>
     <fragment
         android:id="@+id/albumSongsFragment"
@@ -50,5 +55,20 @@
         <argument
             android:name="songLists"
             app:argType="com.lonecoders.musicplayer.models.Song[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/createPlaylists"
+        android:name="com.lonecoders.musicplayer.fragments.CreatePlaylists"
+        android:label="CreatePlaylists" />
+    <fragment
+        android:id="@+id/playListSongs"
+        android:name="com.lonecoders.musicplayer.fragments.PlayListSongs"
+        android:label="PlayListSongs" >
+        <argument
+            android:name="playListID"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_playListSongs_to_playerFragment"
+            app:destination="@id/playerFragment" />
     </fragment>
 </navigation>

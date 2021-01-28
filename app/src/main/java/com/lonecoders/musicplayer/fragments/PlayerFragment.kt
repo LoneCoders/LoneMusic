@@ -1,20 +1,18 @@
 package com.lonecoders.musicplayer.fragments
 
 import android.content.ComponentName
-import android.media.AudioManager
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.PlaybackStateCompat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.google.android.exoplayer2.ControlDispatcher
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.Service.MyMediaService
 import com.lonecoders.musicplayer.databinding.FragmentPlayerBinding
@@ -84,7 +82,8 @@ class PlayerFragment : Fragment() {
             putInt("position", position!!)
             putParcelableArray("songLists",songLists!!)
         }
-        mediaController.transportControls.playFromUri(songLists!![position!!].songUri,bundle)
+        mediaController.transportControls.playFromUri(
+            Uri.parse( songLists!![position!!].songUri),bundle)
         mainButton.setOnClickListener {
             val state = mediaController.playbackState.state
             if(state == PlaybackStateCompat.STATE_PLAYING)

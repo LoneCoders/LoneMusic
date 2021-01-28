@@ -15,8 +15,8 @@ data class Song(
     val albumName: String,
     val albumId: Long,
     val artistName: String,
-    val songAlbumCoverUri: Uri?,
-    val songUri : Uri
+    val songAlbumCoverUri: String?,
+    val songUri : String
 ):Parcelable {
     companion object {
         fun getSongsFromCursor(cursor: Cursor?): MutableList<Song> {
@@ -47,8 +47,8 @@ data class Song(
                         thisSongAlbum,
                         thisSongAlbumId,
                         thisSongArtist,
-                        thisSongAlbumCoverUri,
-                        contentUri
+                        thisSongAlbumCoverUri.toString(),
+                        contentUri.toString()
                     )
                 }
                 it.close()
@@ -93,8 +93,8 @@ data class Song(
                                 thisAlbum,
                                 thisAlbumId,
                                 thisArtist,
-                                thisSongAlbumCoverUri,
-                                contentUri
+                                thisSongAlbumCoverUri.toString(),
+                                contentUri.toString()
                             )
                         }
                     } while (it.moveToNext())
@@ -133,7 +133,7 @@ data class Song(
                                 thisArtistsId,
                                 thisArtist,
                                 null,
-                                contentUri
+                                contentUri.toString()
                             )
                         }
                     } while (it.moveToNext())
