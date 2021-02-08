@@ -14,7 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.lonecoders.musicplayer.R
-import com.lonecoders.musicplayer.Service.MyMediaService
+import com.lonecoders.musicplayer.services.MyMediaService
 import com.lonecoders.musicplayer.databinding.FragmentPlayerBinding
 import com.lonecoders.musicplayer.models.Song
 

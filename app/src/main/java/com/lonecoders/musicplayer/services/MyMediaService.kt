@@ -1,4 +1,4 @@
-package com.lonecoders.musicplayer.Service
+package com.lonecoders.musicplayer.services
 
 import android.content.Intent
 import android.net.Uri
@@ -35,7 +35,7 @@ class MyMediaService : MediaBrowserServiceCompat(){
 
         override fun onPrepare() {
             super.onPrepare()
-            startService(Intent(applicationContext,MyMediaService::class.java))
+            startService(Intent(applicationContext, MyMediaService::class.java))
 
         }
 
