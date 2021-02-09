@@ -2,4 +2,45 @@
 <resources>
     <dimen name="list_item_spacing">16dp</dimen>
     <dimen name="list_item_spacing_half">8dp</dimen>
+
+    <!-- Player UI -->
+    <!-- Player UI - Head -->
+    <dimen name="player_ui_head_marginTop">50dp</dimen>
+    <dimen name="player_ui_head_textSize">20sp</dimen>
+
+    <!-- Player UI - Album Art -->
+    <dimen name="player_ui_album_art_marginTop">40dp</dimen>
+    <dimen name="player_ui_album_art_marginBottom">40dp</dimen>
+    <dimen name="player_ui_album_art_marginStart">50dp</dimen>
+    <dimen name="player_ui_album_art_marginEnd">50dp</dimen>
+
+    <!-- Player UI - Track Name -->
+    <dimen name="player_ui_track_name_marginStart">20dp</dimen>
+    <dimen name="player_ui_track_name_marginEnd">20dp</dimen>
+    <dimen name="player_ui_track_name_marginBottom">10dp</dimen>
+    <dimen name="player_ui_track_name_textSize">25sp</dimen>
+
+    <!-- Player UI - Track Album Name -->
+    <dimen name="player_ui_track_album_name_marginStart">20dp</dimen>
+    <dimen name="player_ui_track_album_name_marginEnd">20dp</dimen>
+    <dimen name="player_ui_track_album_name_marginBottom">30dp</dimen>
+    <dimen name="player_ui_track_album_name_textSize">15sp</dimen>
+
+    <!-- Player UI - Track Seek Bar -->
+    <dimen name="player_ui_track_seek_bar_marginStart">20dp</dimen>
+    <dimen name="player_ui_track_seek_bar_marginEnd">20dp</dimen>
+    <dimen name="player_ui_track_seek_bar_marginBottom">10dp</dimen>
+
+    <!-- Player UI - Track duration info -->
+    <dimen name="player_ui_track_duration_info_marginStart">20dp</dimen>
+    <dimen name="player_ui_track_duration_info_marginEnd">20dp</dimen>
+    <dimen name="player_ui_track_duration_info_marginBottom">20dp</dimen>
+    <dimen name="player_ui_track_duration_info_textSize">15sp</dimen>
+
+    <!-- Player UI - Controls -->
+    <dimen name="player_ui_controls_height">70dp</dimen>
+    <dimen name="player_ui_controls_width">70dp</dimen>
+    <dimen name="player_ui_controls_marginBottom">20dp</dimen>
+    <dimen name="player_ui_controls_play_or_pause_marginStart">15dp</dimen>
+    <dimen name="player_ui_controls_play_or_pause_marginEnd">15dp</dimen>
 </resources>

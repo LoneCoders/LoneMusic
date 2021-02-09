@@ -27,4 +27,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- Playing UI -->
+    <string name="player_ui_track_head">N O W  P L A Y I N G</string>
+    <string name="player_ui_album_art_description">AlbumArt of the track</string>
+    <string name="player_ui_control_skip_to_prev_description">Skip to previous control button</string>
+    <string name="player_ui_control_skip_to_next_description">Skip to next control button</string>
+    <string name="playing_ui_control_play_or_pause_description">Play or Pause control button</string>
+
 </resources>
