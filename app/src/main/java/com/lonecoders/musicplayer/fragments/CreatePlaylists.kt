@@ -2,15 +2,16 @@ package com.lonecoders.musicplayer.fragments
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.database.PlayListsDb
 import com.lonecoders.musicplayer.databinding.FragmentCreatePlaylistsBinding
@@ -30,12 +31,12 @@ class CreatePlaylists : Fragment() {
             this,PlayListsVMF(requireNotNull(activity).application, PlayListsDb.getInstance(requireContext()))
         ).get(PlayListsViewModel::class.java)
         val songLists = mutableListOf<Song>()
+        val args : CreatePlaylistsArgs by navArgs()
         var dialog : AlertDialog? = null
-        viewModel.songSet.observe(viewLifecycleOwner, Observer {
-            var selectedItems = arrayOf<CharSequence>()
-            for(item in viewModel.songSet.value!!){
+
+            var selectedItems = emptyArray<CharSequence>()
+            for(item in args.songs){
                 selectedItems = selectedItems.plusElement(item.songName)
-                (item.songName)
             }
             dialog = AlertDialog.Builder(requireContext())
                 .apply {
@@ -47,8 +48,10 @@ class CreatePlaylists : Fragment() {
                     })
                     setMultiChoiceItems(selectedItems,null,
                         DialogInterface.OnMultiChoiceClickListener { dialogInterface, i, b ->
-                            if(b)
+                            if(b) {
                                 songLists.add(viewModel.songSet.value!![i])
+                                Log.i("TESTT", viewModel.songSet.value!![i].songName)
+                            }
                             else
                                 songLists.remove(viewModel.songSet.value!![i])
                         })
@@ -56,7 +59,7 @@ class CreatePlaylists : Fragment() {
                 .create()
 
 
-        })
+
         binding.songsPicker.setOnClickListener {
             dialog!!.show()
 
@@ -66,6 +69,9 @@ class CreatePlaylists : Fragment() {
 
         binding.songsPickerDone.setOnClickListener {
             val list = Playlists(name = binding.playListsTitle.text.toString(),songs = songLists,nof=songLists.size)
+            for( item in songLists){
+                Log.i("TEST",item.songName);
+            }
             viewModel.insertPlayLists(list)
             requireView().findNavController().navigateUp()
         }

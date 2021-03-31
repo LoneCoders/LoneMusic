@@ -14,9 +14,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.lonecoders.musicplayer.R
-import com.lonecoders.musicplayer.Service.MyMediaService
 import com.lonecoders.musicplayer.databinding.FragmentPlayerBinding
 import com.lonecoders.musicplayer.models.Song
+import com.lonecoders.musicplayer.services.MyMediaService
 
 class PlayerFragment : Fragment() {
 
@@ -72,6 +72,10 @@ class PlayerFragment : Fragment() {
 
         override fun onMetadataChanged(metadata: MediaMetadataCompat?) {
             super.onMetadataChanged(metadata)
+            if(metadata != null) {
+                binding.trackName.text = metadata!!.getString("name")
+            }
+
         }
     }
     private  fun buildTransportControls(){
@@ -119,11 +123,6 @@ class PlayerFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         mediaBrowser.connect()
-    }
-
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun onStop() {

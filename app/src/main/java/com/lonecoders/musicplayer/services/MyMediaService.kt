@@ -1,12 +1,12 @@
-package com.lonecoders.musicplayer.Service
+package com.lonecoders.musicplayer.services
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
+import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
-import android.util.Log
 import androidx.media.MediaBrowserServiceCompat
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -21,6 +21,7 @@ class MyMediaService : MediaBrowserServiceCompat(){
 
     private var mediaSession : MediaSessionCompat? = null
     private lateinit var stateBuilder : PlaybackStateCompat.Builder
+    private lateinit var metadata: MediaMetadataCompat
     private var player : SimpleExoPlayer? = null
     private val mediaSessionCallBack = object : MediaSessionCompat.Callback() {
 
@@ -30,12 +31,12 @@ class MyMediaService : MediaBrowserServiceCompat(){
 
         override fun onSkipToPrevious() {
             super.onSkipToPrevious()
-            player!!.previous()
+
         }
 
         override fun onPrepare() {
             super.onPrepare()
-            startService(Intent(applicationContext,MyMediaService::class.java))
+            startService(Intent(applicationContext, MyMediaService::class.java))
 
         }
 
@@ -47,6 +48,7 @@ class MyMediaService : MediaBrowserServiceCompat(){
                 player!!.currentPosition.toLong(),
                 1000.toFloat()
             )
+
             mediaSession!!.setPlaybackState(stateBuilder.build())
         }
 
@@ -60,6 +62,8 @@ class MyMediaService : MediaBrowserServiceCompat(){
         override fun onSkipToNext() {
             super.onSkipToNext()
             player!!.next()
+
+
         }
 
         override fun onPause() {
@@ -67,7 +71,7 @@ class MyMediaService : MediaBrowserServiceCompat(){
             player!!.pause()
             stateBuilder = PlaybackStateCompat.Builder().setState(
                 PlaybackStateCompat.STATE_PAUSED,
-                player!!.currentPosition.toLong(),
+                player!!.currentPosition,
                 1000.toFloat()
             )
             mediaSession!!.setPlaybackState(stateBuilder.build())
@@ -76,7 +80,7 @@ class MyMediaService : MediaBrowserServiceCompat(){
         override fun onPlayFromUri(uri: Uri?, extras: Bundle?) {
             super.onPlayFromUri(uri, extras)
             val position = extras!!.getInt("position")
-            val songLists : List<Song> = extras.getParcelableArray("songLists")!!.map{
+            val songLists = extras.getParcelableArray("songLists")!!.map{
                 it as Song
             }
             player!!.release()
@@ -87,7 +91,6 @@ class MyMediaService : MediaBrowserServiceCompat(){
                 player!!.addMediaItem(MediaItem.fromUri(songLists[(i+position)%songLists.size].songUri))
             }
             player!!.repeatMode = Player.REPEAT_MODE_ALL
-            Log.d("FFFF","playing"+uri.toString())
             mediaSession!!.isActive = true
             player!!.apply {
                 prepare()
@@ -98,6 +101,8 @@ class MyMediaService : MediaBrowserServiceCompat(){
                 0,
                 1000.toFloat()
             )
+            updateMetadata(songLists[position])
+
             mediaSession!!.setPlaybackState(stateBuilder.build())
         }
 
@@ -126,10 +131,18 @@ class MyMediaService : MediaBrowserServiceCompat(){
             // Set the session's token so that client activities can communicate with it.
             setSessionToken(sessionToken)
         }
+        metadata = MediaMetadataCompat.Builder().build()
         player = SimpleExoPlayer.Builder(applicationContext).build()
 
     }
 
+    private fun updateMetadata(song : Song){
+        metadata = MediaMetadataCompat.Builder()
+            .putString("name",song.songName)
+//            .putLong("duration")
+            .build()
+        mediaSession!!.setMetadata(metadata)
+    }
 
 
     override fun onLoadChildren(

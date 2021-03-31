@@ -30,28 +30,33 @@ class PlaylistsFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentPlaylistsBinding>(
             inflater, R.layout.fragment_playlists,container,false
         )
-        val adapter = PlayListsAdapter(PlayListsClickListener {
-            if(it.nof == null){
-                requireView().findNavController()
-                    .navigate(PagerFragmentDirections.actionPagerFragmentToCreatePlaylists())
-            }
-            else{
-                //Navigate to Playlists Songs
-                requireView().findNavController()
-                    .navigate(PagerFragmentDirections.actionPagerFragmentToPlayListSongs(it.id))
-            }
-        })
+
         val viewModel =  ViewModelProviders.of(
             this,PlayListsVMF(requireNotNull(activity).application, PlayListsDb.getInstance(requireContext()))
         ).get(PlayListsViewModel::class.java)
         binding.setLifecycleOwner { this.lifecycle }
 
-            viewModel.playLists.observe(viewLifecycleOwner, Observer {
-               mutableListOf(Playlists(name = "Create PlayLists")).let {list->
-                    list.addAll(viewModel.playLists.value!!)
-                    adapter.submitList(list)
-                }
-            })
+        val adapter = PlayListsAdapter(PlayListsClickListener {
+            if(it.nof == null && viewModel.songSet.value != null){
+                requireView().findNavController()
+                        .navigate(PagerFragmentDirections.actionPagerFragmentToCreatePlaylists(
+                                viewModel.songSet.value!!.toTypedArray()
+                        ))
+            }
+            else{
+                //Navigate to Playlists Songs
+                requireView().findNavController()
+                        .navigate(PagerFragmentDirections.actionPagerFragmentToPlayListSongs(it.id))
+            }
+        })
+
+        viewModel.playLists.observe(viewLifecycleOwner, Observer {
+           mutableListOf(Playlists(name = "Create PlayLists")).let {list->
+                list.addAll(viewModel.playLists.value!!)
+                adapter.submitList(list)
+            }
+        })
+
         binding.playlists.adapter = adapter
         return binding.root
     }

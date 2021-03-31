@@ -59,7 +59,11 @@
     <fragment
         android:id="@+id/createPlaylists"
         android:name="com.lonecoders.musicplayer.fragments.CreatePlaylists"
-        android:label="CreatePlaylists" />
+        android:label="CreatePlaylists" >
+        <argument
+            android:name="songs"
+            app:argType="com.lonecoders.musicplayer.models.Song[]" />
+    </fragment>
     <fragment
         android:id="@+id/playListSongs"
         android:name="com.lonecoders.musicplayer.fragments.PlayListSongs"

@@ -12,6 +12,7 @@ import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.SongsAdapter
 import com.lonecoders.musicplayer.database.PlayListsDb
@@ -44,17 +45,24 @@ class PlayListSongs : Fragment() {
                 )
             }
         })
+
+
+
        binding.albumInSongsList.layoutManager = LinearLayoutManager(requireContext())
      //   viewModel.getPlayLists(args.playListID)
         viewModel.playlist.observe(viewLifecycleOwner, Observer {
             if(it != null){
+                Glide.with(this)
+                    .load(viewModel.playlist.value!!.songs!![0].songAlbumCoverUri)
+                    .placeholder(R.drawable.ic_album_cover_default)
+                    .centerCrop()
+                    .into(requireView().findViewById(R.id.album_in_cover_header))
                 Log.i("fff",args.playListID.toString())
                 binding.albumInName.text = it.name
                 adapter.submitList(it.songs)
                 binding.albumInSongsList.adapter = adapter
             }
 
-                Log.i("fff","stinky stink")
 
         })
         binding.albumInSongsList.adapter = adapter
