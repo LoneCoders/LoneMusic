@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/songs_dest"
+        android:icon="@drawable/ic_song_cover_default"
+        android:title="@string/bottom_nav_item_songs_title" />
+
+    <item
+        android:id="@+id/albums_dest"
+        android:icon="@drawable/ic_album_cover_default"
+        android:title="@string/bottom_nav_item_albums_title" />
+
+    <item
+        android:id="@+id/playlist_dest"
+        android:title="@string/bottom_nav_item_playlists_title" />
+</menu>

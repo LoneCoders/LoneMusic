@@ -19,13 +19,11 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_about">About</string>
 
-    <!-- Tab -->
-    <string name="tab_artists">Artists</string>
-    <string name="tab_songs">Songs</string>
-    <string name="tab_albums">Albums</string>
-    <string name="tab_playlists">Playlists</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Bottom Navigation View -->
+    <string name="bottom_nav_item_artists_title">Artists</string>
+    <string name="bottom_nav_item_songs_title">Songs</string>
+    <string name="bottom_nav_item_albums_title">Albums</string>
+    <string name="bottom_nav_item_playlists_title">Playlists</string>
 
     <!-- Playing UI -->
     <string name="player_ui_track_head">N O W  P L A Y I N G</string>
