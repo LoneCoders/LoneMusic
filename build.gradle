@@ -3,7 +3,7 @@ buildscript {
     ext.kotlin_version = "1.4.30"
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         def nav_version = "2.3.0"
@@ -19,7 +19,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
