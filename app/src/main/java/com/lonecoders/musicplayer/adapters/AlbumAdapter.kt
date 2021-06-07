@@ -1,52 +1,45 @@
 package com.lonecoders.musicplayer.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.lonecoders.musicplayer.R
+import com.lonecoders.musicplayer.databinding.ModelAlbumBinding
 import com.lonecoders.musicplayer.models.Album
 
-class AlbumAdapter(
-    private val onClickListener: CustomOnClickListener
-) :
-    ListAdapter<Album,AlbumAdapter.AlbumListViewHolder>(DiffAlbumCallback()) {
-    class AlbumListViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView)
-
+class AlbumAdapter(private val clickListener: AlbumClickListener) :
+    ListAdapter<Album, AlbumAdapter.AlbumListViewHolder>(DiffAlbumCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumListViewHolder {
-        val albumLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.model_album, parent, false)
-        return AlbumListViewHolder(albumLayout)
+        return AlbumListViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: AlbumListViewHolder, position: Int) {
-        if(getItem(position) == null)
-            return
-        holder.itemView.findViewById<TextView>(R.id.album_name).text =
-            getItem(position).albumName
-        Glide.with(holder.itemView)
-            .load(getItem(position).albumCoverUri)
-            .placeholder(R.drawable.ic_album_cover_default)
-            .centerCrop()
-            .into(holder.itemView.findViewById<ImageView>(R.id.album_cover))
-
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(getItem(position))
-        }
+        val item = getItem(position)
+        holder.bind(item, clickListener)
     }
 
+    class AlbumListViewHolder(private val binding: ModelAlbumBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
+        companion object {
+            fun from(parent: ViewGroup): AlbumListViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ModelAlbumBinding.inflate(layoutInflater, parent, false)
+                return AlbumListViewHolder(binding)
+            }
+        }
 
+        fun bind(album: Album, clickListener: AlbumClickListener) {
+            binding.album = album
+            binding.clickListener = clickListener
+            binding.executePendingBindings()
+        }
+    }
 }
 
-class DiffAlbumCallback : DiffUtil.ItemCallback<Album>(){
+class DiffAlbumCallback : DiffUtil.ItemCallback<Album>() {
     override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
         return oldItem === newItem
     }
@@ -57,6 +50,6 @@ class DiffAlbumCallback : DiffUtil.ItemCallback<Album>(){
 
 }
 
-class CustomOnClickListener(val clickListener: (album: Album) -> Unit) {
+class AlbumClickListener(val clickListener: (album: Album) -> Unit) {
     fun onClick(album: Album) = clickListener(album)
 }
