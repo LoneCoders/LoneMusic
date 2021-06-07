@@ -9,7 +9,7 @@
 
         <variable
             name="clickListener"
-            type="com.lonecoders.musicplayer.adapters.SongsAdapter.SongsClickListener" />
+            type="com.lonecoders.musicplayer.adapters.SongsClickListener" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

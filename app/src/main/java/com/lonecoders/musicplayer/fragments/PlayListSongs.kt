@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.SongsAdapter
+import com.lonecoders.musicplayer.adapters.SongsClickListener
 import com.lonecoders.musicplayer.database.PlayListsDb
 import com.lonecoders.musicplayer.databinding.SongsListBinding
 
@@ -33,7 +34,7 @@ class PlayListSongs : Fragment() {
         val viewModel = ViewModelProviders.of(this,
             PlayListSongVMF(requireNotNull(activity).application, PlayListsDb.getInstance(requireContext()),args.playListID))
             .get(PlayListSongVM::class.java)
-        val adapter = SongsAdapter(SongsAdapter.SongsClickListener {
+        val adapter = SongsAdapter(SongsClickListener {
             if(viewModel.playlist.value != null) {
                 val pos = viewModel.playlist.value!!.songs!!.indexOf(it)
                 requireView().findNavController().navigate(

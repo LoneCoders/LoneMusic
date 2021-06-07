@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.SongsAdapter
+import com.lonecoders.musicplayer.adapters.SongsClickListener
 import com.lonecoders.musicplayer.databinding.FragmentSongsBinding
 import com.lonecoders.musicplayer.viewmodels.SongViewModel
 import com.lonecoders.musicplayer.viewmodels.SongVmFactory
@@ -58,7 +59,7 @@ class SongsFragment : Fragment() {
              * Adapter with SongClickListener implementation
              * On click, It navigates to the player fragment with position and song set
              */
-            adapter = SongsAdapter(SongsAdapter.SongsClickListener {
+            adapter = SongsAdapter(SongsClickListener {
                 val pos = viewModel.songSet.value!!.indexOf(it)
                 view.findNavController().navigate(
                     PagerFragmentDirections.actionPagerFragmentToPlayerFragment(

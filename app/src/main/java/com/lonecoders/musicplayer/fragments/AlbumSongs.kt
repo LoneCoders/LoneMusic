@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.SongsAdapter
+import com.lonecoders.musicplayer.adapters.SongsClickListener
 import com.lonecoders.musicplayer.models.Album
 
 class AlbumSongs : Fragment() {
@@ -49,7 +50,7 @@ class AlbumSongs : Fragment() {
         view.findViewById<RecyclerView>(R.id.album_in_songs_list).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = SongsAdapter(SongsAdapter.SongsClickListener {
+            adapter = SongsAdapter(SongsClickListener {
                 val pos = albumSongs.indexOf(it)
                 requireView().findNavController().navigate(AlbumSongsDirections.actionAlbumSongsFragmentToPlayerFragment(pos,
                     albumSongs.toTypedArray()

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.adapters.SongsAdapter
+import com.lonecoders.musicplayer.adapters.SongsClickListener
 import com.lonecoders.musicplayer.models.Song
 import com.lonecoders.musicplayer.util.MusicUtils
 
@@ -33,7 +34,7 @@ class ArtistSongs : Fragment() {
         view.findViewById<RecyclerView>(R.id.album_in_songs_list).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = SongsAdapter(SongsAdapter.SongsClickListener {  }).apply {  submitList(artistSongs)}
+            adapter = SongsAdapter(SongsClickListener {  }).apply {  submitList(artistSongs)}
 
         }
     }

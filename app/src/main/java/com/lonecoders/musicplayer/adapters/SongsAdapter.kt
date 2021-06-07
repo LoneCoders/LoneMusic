@@ -36,20 +36,20 @@ class SongsAdapter(private val clickListener: SongsClickListener) :
             binding.executePendingBindings()
         }
     }
+}
 
-    class DiffCallBack : DiffUtil.ItemCallback<Song>() {
-        override fun areItemsTheSame(oldItem: Song, newItem: Song): Boolean {
-            return oldItem === newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Song, newItem: Song): Boolean {
-            return oldItem == newItem
-        }
+class DiffCallBack : DiffUtil.ItemCallback<Song>() {
+    override fun areItemsTheSame(oldItem: Song, newItem: Song): Boolean {
+        return oldItem === newItem
     }
 
-    class SongsClickListener(val clickListener: (song: Song) -> Unit) {
-        fun onClick(song: Song) = clickListener(song)
+    override fun areContentsTheSame(oldItem: Song, newItem: Song): Boolean {
+        return oldItem == newItem
     }
+}
+
+class SongsClickListener(val clickListener: (song: Song) -> Unit) {
+    fun onClick(song: Song) = clickListener(song)
 }
 
 
