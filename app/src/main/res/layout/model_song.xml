@@ -1,53 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/song_model"
-    android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:orientation="horizontal"
-    android:background="@android:color/white">
+<layout>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                app:cardCornerRadius="6dp">
+    <data>
 
-                <ImageView
-                    android:id="@+id/album_cover_in_song"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent"
-                    android:contentDescription="@string/album_cover_description" />
-            </androidx.cardview.widget.CardView>
+        <variable
+            name="song"
+            type="com.lonecoders.musicplayer.models.Song" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:orientation="vertical">
+        <variable
+            name="clickListener"
+            type="com.lonecoders.musicplayer.adapters.SongsAdapter.SongsClickListener" />
+    </data>
 
-                    <TextView
-                        android:id="@+id/album_in_song_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/song_model"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@android:color/white"
+        android:onClick="@{() -> clickListener.onClick(song)}"
+        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/song_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:textColor="@android:color/darker_gray" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            app:cardCornerRadius="6dp">
 
-                </LinearLayout>
+            <ImageView
+                android:id="@+id/album_cover_in_song"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"
+                android:contentDescription="@string/album_cover_description"
+                app:songAlbumCover="@{song}" />
+        </androidx.cardview.widget.CardView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/album_in_song_name"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                app:songName="@{song}" />
+
+            <TextView
+                android:id="@+id/song_info"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@android:color/darker_gray"
+                app:songInfo="@{song}" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

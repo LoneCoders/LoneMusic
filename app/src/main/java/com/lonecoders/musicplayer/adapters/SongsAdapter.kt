@@ -1,45 +1,43 @@
 package com.lonecoders.musicplayer.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.lonecoders.musicplayer.R
+import com.lonecoders.musicplayer.databinding.ModelSongBinding
 import com.lonecoders.musicplayer.models.Song
 
-class SongsAdapter(val clickListener: SongsClickListener):
-    ListAdapter<Song,SongsAdapter.SongListViewHolder>(DiffCallBack()) {
-    class SongListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class SongsAdapter(private val clickListener: SongsClickListener) :
+    ListAdapter<Song, SongsAdapter.SongListViewHolder>(DiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongListViewHolder {
-        val albumInLayout =
-            LayoutInflater.from(parent.context).inflate(R.layout.model_song, parent, false)
-        return SongListViewHolder(albumInLayout)
+        return SongListViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: SongListViewHolder, position: Int) {
-        holder.itemView.findViewById<TextView>(R.id.album_in_song_name).text =
-            getItem(position).songName
-        val songInfo =
-            "${getItem(position).artistName} - ${getItem(position).albumName}"
-        holder.itemView.findViewById<TextView>(R.id.song_info).text = songInfo
-
-        holder.itemView.setOnClickListener {
-            clickListener.onClick(getItem(position))
-        }
-
-        Glide.with(holder.itemView)
-            .load(getItem(position).songAlbumCoverUri)
-            .placeholder(R.drawable.ic_song_cover_default)
-            .centerCrop()
-            .into(holder.itemView.findViewById(R.id.album_cover_in_song))
+        val item = getItem(position)
+        holder.bind(item, clickListener)
     }
 
-    class DiffCallBack : DiffUtil.ItemCallback<Song>(){
+    class SongListViewHolder(val binding: ModelSongBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        companion object {
+            fun from(parent: ViewGroup): SongListViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ModelSongBinding.inflate(layoutInflater, parent, false)
+                return SongListViewHolder(binding)
+            }
+        }
+
+        fun bind(song: Song, clickListener: SongsClickListener) {
+            binding.song = song
+            binding.clickListener = clickListener
+            binding.executePendingBindings()
+        }
+    }
+
+    class DiffCallBack : DiffUtil.ItemCallback<Song>() {
         override fun areItemsTheSame(oldItem: Song, newItem: Song): Boolean {
             return oldItem === newItem
         }
@@ -47,10 +45,10 @@ class SongsAdapter(val clickListener: SongsClickListener):
         override fun areContentsTheSame(oldItem: Song, newItem: Song): Boolean {
             return oldItem == newItem
         }
-
     }
-    class SongsClickListener(val clickListener :(song : Song) -> Unit){
-        fun onClick(song :Song) = clickListener(song)
+
+    class SongsClickListener(val clickListener: (song: Song) -> Unit) {
+        fun onClick(song: Song) = clickListener(song)
     }
 }
 
