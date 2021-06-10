@@ -6,7 +6,8 @@ import android.net.Uri
 import android.os.Parcelable
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio.Media.*
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
+
 
 @Parcelize
 data class Song(
