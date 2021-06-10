@@ -17,7 +17,7 @@ private const val MY_MEDIA_ROOT_ID = "lone_media_root_id"
 private const val MY_EMPTY_MEDIA_ROOT_ID = "empty_root_id"
 
 
-class MyMediaService : MediaBrowserServiceCompat(){
+class MusicService : MediaBrowserServiceCompat(){
 
     private var mediaSession : MediaSessionCompat? = null
     private lateinit var stateBuilder : PlaybackStateCompat.Builder
@@ -36,7 +36,7 @@ class MyMediaService : MediaBrowserServiceCompat(){
 
         override fun onPrepare() {
             super.onPrepare()
-            startService(Intent(applicationContext, MyMediaService::class.java))
+            startService(Intent(applicationContext, MusicService::class.java))
 
         }
 

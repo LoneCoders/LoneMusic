@@ -16,7 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.lonecoders.musicplayer.R
 import com.lonecoders.musicplayer.databinding.FragmentPlayerBinding
 import com.lonecoders.musicplayer.models.Song
-import com.lonecoders.musicplayer.services.MyMediaService
+import com.lonecoders.musicplayer.services.MusicService
 
 class PlayerFragment : Fragment() {
 
@@ -112,7 +112,7 @@ class PlayerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mediaBrowser = MediaBrowserCompat(
             requireContext(),
-            ComponentName(requireContext(), MyMediaService::class.java),
+            ComponentName(requireContext(), MusicService::class.java),
             connectionCallbacks,
             null // optional Bundle
         )
